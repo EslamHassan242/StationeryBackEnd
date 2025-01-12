@@ -24,10 +24,8 @@ namespace Stationery.CORE.Models
         public double? PriceBuy { get; set; }
         public double? TotalSell { get; set; }
         public double? TotalBuy { get; set; }
-
         [Precision(18,4)]
         public decimal Quentity { get; set; }
-
         public Products Product { get; set; }
         public Units Units { get; set; }
         public Orders Order { get; set; }

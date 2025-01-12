@@ -11,8 +11,12 @@ namespace Stationery.EF
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
         public IBaseRepository<Orders> Orders { get; private set; }
-     
-        //public IAccusedRepository Accused { get; }
+
+        public IBaseRepository<OrdersDetails> OrderDetails { get; private set; }
+
+       
+
+        public IProductUnitRepository ProductUnits { get; }
         public UnitOfWork(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
@@ -20,8 +24,10 @@ namespace Stationery.EF
             //Kadia = new KadiaRepository(_context, _httpContextAccessor);
 
             Orders = new BaseRepository<Orders>(_context);
-           
-            
+            OrderDetails = new BaseRepository<OrdersDetails>(_context);
+            ProductUnits = new ProductUnitRepository(_context);
+
+
         }
         public int Complete()
         {

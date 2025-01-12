@@ -11,9 +11,9 @@ namespace Stationery.CORE
     public interface IUnitOfWork : IDisposable
     {
         IBaseRepository<Orders> Orders { get;  }
-       
-        //public IMahdarRepository Mahdar { get; }
-     
+        IBaseRepository<OrdersDetails> OrderDetails { get; }
+        public IProductUnitRepository ProductUnits { get; }
+
         int Complete();
     }
 }

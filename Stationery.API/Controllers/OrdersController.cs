@@ -80,16 +80,12 @@ namespace Stationery.API.Controllers
             if(order.Finished ?? true)
             {
                 return BadRequest(new { message = "only empty orders can be deleted" });
-            }
-           
+            }           
             try
-            {
-               
+            {               
                     _unitOfWork.Orders.Delete(order);
                     _unitOfWork.Complete();
                     return Ok(new { message = "Order  deleted successfully" });
-              
-              
             }
             catch (Exception ex)
             {
