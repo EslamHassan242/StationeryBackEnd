@@ -18,7 +18,6 @@ namespace Stationery.API.Controllers
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-
         [HttpGet("GetOrderDetails")]
         public async Task<ActionResult<IEnumerable<OrderDetailsResponseDto>>> GetOrderDetails(decimal orderId)
         {
