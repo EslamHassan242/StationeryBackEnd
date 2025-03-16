@@ -13,8 +13,10 @@ namespace Stationery.EF
         public IBaseRepository<Orders> Orders { get; private set; }
 
         public IBaseRepository<OrdersDetails> OrderDetails { get; private set; }
+        public IBaseRepository<Suppliers> Suppliers { get; private set; }
+        public  IBaseRepository<Products> Products { get; private set; }
 
-       
+
 
         public IProductUnitRepository ProductUnits { get; }
         public UnitOfWork(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
@@ -25,7 +27,13 @@ namespace Stationery.EF
 
             Orders = new BaseRepository<Orders>(_context);
             OrderDetails = new BaseRepository<OrdersDetails>(_context);
+            Suppliers = new BaseRepository<Suppliers>(_context);
+            Products = new BaseRepository<Products>(_context);
+
+
+
             ProductUnits = new ProductUnitRepository(_context);
+          
 
 
         }

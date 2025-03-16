@@ -24,14 +24,10 @@ namespace Stationery.API.Controllers
             var order = await _unitOfWork.Orders.GetByIdAsync(orderId);
             if (order == null)
                 return NotFound($"No Order found with Id {orderId}");
-
             Expression<Func<OrdersDetails, bool>> criteria = x => x.OrderId == orderId;
             var orderDetails= await _unitOfWork.OrderDetails.FindAllAsync(criteria);
             return Ok(orderDetails.ToList());
-
         }
-
-
         [HttpPost("AddOrderDetails")]
         public async Task<IActionResult>AddOrderDetails([FromForm]BasicOrderDetailsDto orderDetailsDto)
         {
@@ -60,11 +56,6 @@ namespace Stationery.API.Controllers
             {
                 return BadRequest(new { message = ex.Message });
             }
-
-
-
         }
-
-
     }
 }
