@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Stationery.CORE.DTOS.AuthDtos;
 using Stationery.CORE.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Stationery.EF
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :base(options)
         {
@@ -28,6 +30,8 @@ namespace Stationery.EF
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.UseCollation("Arabic_CI_AS");
+        
             modelBuilder.Entity<OrdersDetails>().HasOne(op => op.Order).WithMany(p => p.OrdersDetails).HasForeignKey(op => op.OrderId);
             modelBuilder.Entity<OrdersDetails>().HasOne(od => od.Units).WithMany(u => u.OrdersDetails).HasForeignKey(od => od.UnitId);
             modelBuilder.Entity<OrdersDetails>().HasOne(op => op.Product).WithMany(p => p.OrdersDetails).HasForeignKey(op => op.ProductID);
