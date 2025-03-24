@@ -17,12 +17,14 @@ namespace Stationery.CORE.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public decimal ID { get; set; }
         [Precision(18, 0)]
-        public decimal OrderBuyId { get; set; }
+        
         public int ProductId { get; set; }
         [Precision(18, 4)]
-        public decimal Quentity { get; set; }
+        public decimal Quentity { get; set; }    
         
         public Products Product { get; set; }
         public OrdersBuy OrderBuy { get; set; }
+        public decimal OrderBuyId { get; set; }
+
     }
 }

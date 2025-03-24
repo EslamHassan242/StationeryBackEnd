@@ -11,36 +11,25 @@ using Stationery.CORE.Models;
 using Stationery.CORE.Interfaces;
 using Stationery.CORE.Settings;
 using Stationery.CORE.DTOS.AuthDtos;
-
 namespace Stationery.EF.Repositories
 {
     public class AuthService : IAuthService
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly JWT _jwt;
-        
-
-        public AuthService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager,
-            IOptions<JWT> jwt)
+        private readonly JWT _jwt;   
+        public AuthService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IOptions<JWT> jwt)           
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _jwt = jwt.Value;
         }
-
-
-
-
-
         public async Task<AuthModel> RegisterAsync(RegisterModel model)
         {
             if (await _userManager.FindByEmailAsync(model.Email) is not null)
                 return new AuthModel { Message = "Email is already registered!" };
-
             if (await _userManager.FindByNameAsync(model.Username) is not null)
                 return new AuthModel { Message = "Username is already registered!" };
-
             var user = new ApplicationUser
             {
                 UserName = model.Username,
@@ -114,7 +103,7 @@ namespace Stationery.EF.Repositories
             if (user.RefreshTokens.Any(t => t.IsActive))
             {
                 var activeRefreshToken = user.RefreshTokens.FirstOrDefault(t => t.IsActive);
-                authModel.RefreshToken = activeRefreshToken.Token;
+                authModel.RefreshToken = activeRefreshToken?.Token;
                 authModel.RefreshTokenExpiration = activeRefreshToken.ExpiresOn;
             }
             else
@@ -125,9 +114,7 @@ namespace Stationery.EF.Repositories
                 user.RefreshTokens.Add(refreshToken);
                 await _userManager.UpdateAsync(user);
             }
-
             return authModel;
-
         }
 
         public async Task<string> AddRoleAsync(AddRoleModel model)

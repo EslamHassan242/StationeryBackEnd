@@ -1,4 +1,5 @@
-﻿using Stationery.CORE.Interfaces;
+﻿using Stationery.CORE.consts;
+using Stationery.CORE.Interfaces;
 using Stationery.CORE.Models;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,9 @@ namespace Stationery.CORE
         IBaseRepository<OrdersDetails> OrderDetails { get; }
         IBaseRepository<Suppliers> Suppliers { get; }
         IBaseRepository<Products> Products { get; }
+        IBaseRepository<OrdersBuy> OrderBuy { get; }
         public IProductUnitRepository ProductUnits { get; }
+        
 
         int Complete();
     }

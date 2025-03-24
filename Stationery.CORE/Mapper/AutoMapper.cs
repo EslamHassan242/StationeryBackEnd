@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Stationery.CORE.DTOS.OrderBuyDtos;
 using Stationery.CORE.DTOS.OrderDetailsDtos;
 using Stationery.CORE.DTOS.OrdersDtos;
 using Stationery.CORE.DTOS.ProductsDtos;
@@ -16,6 +17,13 @@ namespace Stationery.CORE.Mapper
             CreateMap<Orders, OrdersResponseDto>().ReverseMap();
             CreateMap<Orders, InsertEmptyOrderDto>().ReverseMap();
             CreateMap<Orders, UpdateExistingEmptyOrderDto>().ReverseMap();
+            
+            CreateMap<OrdersBuy, OrderBuyResponseDto>().ReverseMap();
+            CreateMap<OrdersBuy, InsertEmptyOrderBuyDto>().ReverseMap();
+            CreateMap<OrdersBuy, UpdateExistingEmptyOrderBuyDto>().ReverseMap();
+
+
+
             CreateMap<OrdersDetails, OrderDetailsResponseDto>().ReverseMap();
             CreateMap<OrdersDetails, BasicOrderDetailsDto>().ReverseMap();
             CreateMap<Suppliers, SuppliersResponseDto>().ReverseMap();

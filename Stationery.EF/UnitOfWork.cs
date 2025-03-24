@@ -3,6 +3,7 @@ using Stationery.CORE.Interfaces;
 using Stationery.CORE.Models;
 using Stationery.EF.Repositories;
 using Microsoft.AspNetCore.Http;
+using Stationery.CORE.consts;
 
 namespace Stationery.EF
 {
@@ -15,10 +16,12 @@ namespace Stationery.EF
         public IBaseRepository<OrdersDetails> OrderDetails { get; private set; }
         public IBaseRepository<Suppliers> Suppliers { get; private set; }
         public  IBaseRepository<Products> Products { get; private set; }
+        public  IBaseRepository<OrdersBuy> OrderBuy { get; private set; }
 
 
 
         public IProductUnitRepository ProductUnits { get; }
+      
         public UnitOfWork(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
@@ -29,7 +32,8 @@ namespace Stationery.EF
             OrderDetails = new BaseRepository<OrdersDetails>(_context);
             Suppliers = new BaseRepository<Suppliers>(_context);
             Products = new BaseRepository<Products>(_context);
-
+            OrderBuy = new BaseRepository<OrdersBuy>(_context);
+            
 
 
             ProductUnits = new ProductUnitRepository(_context);
